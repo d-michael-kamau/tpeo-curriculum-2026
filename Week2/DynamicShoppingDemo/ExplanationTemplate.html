@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping List Example</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Shopping List</h1>
+
+      <div>
+          <label for="item">Enter a new item:</label>
+          <input type="text" name="item" id="item">
+
+          <!-- add an onclick to the button - createListItem(), explain how to do this in html -->
+          <button onclick="createListItem()" onclick="createListItem()">Add item</button>
+      </div>
+
+      <ul id="Shopping-List"></ul>
+    </div>
+
+    <script>
+      
+     
+
+      function createListItem() {
+        const input = document.querySelector("#item");
+        additem(input.value);
+        input.value = "";
+        input.focus();
+      }
+
+      // Step 1 
+      // 1. pull the most recent version from localStorage!
+       let shoppingList = JSON.parse(localStorage.getItem("shoppingList"));
+      // 2. Handle edge case... if it's null, set to empty array
+      if (!shoppingList) {
+        shoppingList = [];
+      }
+      // 3. else - add each item to HTML by calling addItem() for every item in the shoppingList
+      else {
+        shoppingList.array.forEach(element => {
+          addItem(element);
+        });
+      }
+      // Step 2  done above ^ 
+      // 1. Select #item - document.querySelector("#item")
+      // 2. Call addItem with input value 
+      // 3. Clear the input box and set the focus back to the textbox
+ 
+      //conveniently done for you!
+      //manipulates HTML directly - grabs the list and pushes a new list item to it
+      function addItem(text) {
+        //grab the list
+        const list = document.querySelector("ul");
+
+        //create new elements
+        const li = document.createElement("li");
+        const span = document.createElement("span");
+        const deleteButton = document.createElement("button");
+        const saveButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        saveButton.innerText = "Save";
+        span.innerText = text;
+
+        list.appendChild(li);
+        li.appendChild(span);
+        li.appendChild(deleteButton);
+        li.appendChild(saveButton);
+
+        //deleting
+        deleteButton.addEventListener("click", ()=> {
+          list.removeChild(li);
+          shoppingList = shoppingList.filter((item => item != span.innerText));
+          localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
+        })
+
+        //saving
+        saveButton.addEventListener("click", ()=> {
+          const itemExists = shoppingList.some((item) => item === text)
+          if (!itemExists) {
+            shoppingList.push(text)
+            localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
+          } 
+
+        })
+
+        // Step 3 
+        // 1. Removing from the dom via list.removeChild(li)
+        // 2. Remove it from our shopping list array 
+        // 3. Remove it from localStorage by setting overriding the current shoppinglist in local storage with the updated one 
+      
+
+
+        // 1. Add the item to our shoppinglist array 
+        // 2. Update our local storage
+        // 3. Update the UI - This is already handled for us
+      }
+
+    </script>
+  </body>
+</html>
