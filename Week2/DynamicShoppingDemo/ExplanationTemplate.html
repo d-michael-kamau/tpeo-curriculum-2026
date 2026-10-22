@@ -15,18 +15,13 @@
           <input type="text" name="item" id="item">
 
           <!-- add an onclick to the button - createListItem(), explain how to do this in html -->
-<<<<<<< HEAD
           <button onclick="createListItem()" onclick="createListItem()">Add item</button>
-=======
-          <button onclick="createListItem()">Add item</button>
->>>>>>> cc10828e93071a4366a04a408d443552a150710a
       </div>
 
       <ul id="Shopping-List"></ul>
     </div>
 
     <script>
-<<<<<<< HEAD
       
      
 
@@ -42,19 +37,10 @@
        let shoppingList = JSON.parse(localStorage.getItem("shoppingList"));
       // 2. Handle edge case... if it's null, set to empty array
       if (!shoppingList) {
-=======
-      // Step 1 
-      // 1. pull the most recent version from localStorage!
-      let shoppingList = JSON.parse(localStorage.getItem("shoppingList"));
-
-      // 2. Handle edge case... if it's null, set to empty array
-      if(!shoppingList) {
->>>>>>> cc10828e93071a4366a04a408d443552a150710a
         shoppingList = [];
       }
       // 3. else - add each item to HTML by calling addItem() for every item in the shoppingList
       else {
-<<<<<<< HEAD
         shoppingList.array.forEach(element => {
           addItem(element);
         });
@@ -64,27 +50,6 @@
       // 2. Call addItem with input value 
       // 3. Clear the input box and set the focus back to the textbox
  
-=======
-        shoppingList.forEach(item => {
-          addItem(item)
-        })
-      }
-      
-      // Step 2 
-      // 1. Select #item - document.querySelector("#item")
-      // 2. Call addItem with input value 
-      // 3. Clear the input box and set the focus back to the textbox
-      function createListItem() {
-        const input = document.querySelector("#item");
-        console.log(input.value);
-
-        addItem(input.value);
-
-        input.value = "";
-        input.focus();
-      }
-
->>>>>>> cc10828e93071a4366a04a408d443552a150710a
       //conveniently done for you!
       //manipulates HTML directly - grabs the list and pushes a new list item to it
       function addItem(text) {
@@ -105,18 +70,13 @@
         li.appendChild(deleteButton);
         li.appendChild(saveButton);
 
-<<<<<<< HEAD
         //deleting
-=======
-        // delete button functionality
->>>>>>> cc10828e93071a4366a04a408d443552a150710a
         deleteButton.addEventListener("click", ()=> {
           list.removeChild(li);
           shoppingList = shoppingList.filter((item => item != span.innerText));
           localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
         })
 
-<<<<<<< HEAD
         //saving
         saveButton.addEventListener("click", ()=> {
           const itemExists = shoppingList.some((item) => item === text)
@@ -125,33 +85,15 @@
             localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
           } 
 
-=======
-        // save button functionality
-        saveButton.addEventListener("click", ()=> {
-          console.log("Saved");
-
-          const itemExists = shoppingList.some((item) => item === text)
-          if (!itemExists) {
-            shoppingList.push(text)
-            localStorage.setItem("shoppingList", JSON.stringify(shoppingList))
-          } else {
-            console.log("Error" + text + "already exists")
-          }
-          console.log(localStorage)
->>>>>>> cc10828e93071a4366a04a408d443552a150710a
         })
 
         // Step 3 
         // 1. Removing from the dom via list.removeChild(li)
         // 2. Remove it from our shopping list array 
         // 3. Remove it from localStorage by setting overriding the current shoppinglist in local storage with the updated one 
-<<<<<<< HEAD
       
 
 
-=======
-        
->>>>>>> cc10828e93071a4366a04a408d443552a150710a
         // 1. Add the item to our shoppinglist array 
         // 2. Update our local storage
         // 3. Update the UI - This is already handled for us
